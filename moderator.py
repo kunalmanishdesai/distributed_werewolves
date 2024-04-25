@@ -10,7 +10,7 @@ from collections import Counter
 
 startTime = datetime.now()
 
-time_for_each_step = 15
+time_for_each_step = 30
 
 class Moderator(rpyc.Service) :
 
@@ -182,7 +182,7 @@ class Moderator(rpyc.Service) :
         self.werewolves_vote_phase = False
         self.broadcast("Time for werevoles to vote ended")
 
-        vote_counts = Counter(list(self.votes.items()))
+        vote_counts = Counter(list(self.votes.values()))
         self.votes = {}
 
         most_voted_player = vote_counts.most_common()
@@ -192,7 +192,7 @@ class Moderator(rpyc.Service) :
         else:
 
             self.didSomeOneDie = True
-            player_id = most_voted_player[0][0][1]
+            player_id = most_voted_player[0][0]
             connection_id = self.player_ids[player_id][0]
 
             self.killed.append(player_id)
@@ -223,7 +223,7 @@ class Moderator(rpyc.Service) :
         self.town_people_vote_phase = False
         self.broadcast("Time for town people to vote ended")
 
-        vote_counts = Counter(list(self.votes.items()))
+        vote_counts = Counter(list(self.votes.values()))
         self.votes = {}
 
         most_voted_player = vote_counts.most_common()
@@ -233,7 +233,7 @@ class Moderator(rpyc.Service) :
         else:
 
             self.didSomeOneDie = True
-            player_id = most_voted_player[0][0][1]
+            player_id = most_voted_player[0][0]
             connection_id = self.player_ids[player_id][0]
 
             self.killed.append(player_id)
