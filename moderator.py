@@ -271,70 +271,76 @@ class Moderator(rpyc.Service) :
             self.send_single_message(connection_id,s)
     
 if __name__ == '__main__':
+    try:
+        hostname = 'localhost'
+        port = 18080
 
-    hostname = 'localhost'
-    port = 18080
+        moderator_instance = Moderator()
+        ts = ThreadedServer(moderator_instance, hostname=hostname, port=port)
+        server_thread = threading.Thread(target = ts.start)
+        server_thread.start()
 
-    moderator_instance = Moderator()
-    ts = ThreadedServer(moderator_instance, hostname=hostname, port=port)
-    server_thread = threading.Thread(target = ts.start)
-    server_thread.start()
-
-    moderator_instance.broadcast("Waiting for clients to join")
-
-    time.sleep(time_for_each_step)
-
-    # print("Moderator service started on hostname and port ", ts.host, port)
-
-    # moderator_instance.broadcast("Werewolves are decided")
-    moderator_instance.select_werewolves()
-    
-
-    while(len(moderator_instance.werewolves) != 0 and len(moderator_instance.werewolves) < len(moderator_instance.towns_people)): 
-
-        moderator_instance.start()
-        moderator_instance.start_werewolves_disccusion()
+        moderator_instance.broadcast("Waiting for clients to join")
 
         time.sleep(time_for_each_step)
 
-        moderator_instance.end_werewolves_disccusion()
+        # print("Moderator service started on hostname and port ", ts.host, port)
 
-        moderator_instance.start_werewolves_vote_session()
-
-        time.sleep(time_for_each_step)
-
-        moderator_instance.end_werewolves_vote_session()
-
-        if len(moderator_instance.werewolves) == 0 or len(moderator_instance.werewolves) >= len(moderator_instance.towns_people):
-            break
-
-        if (moderator_instance.didSomeOneDie) :
-            moderator_instance.start_death_speech()
-            time.sleep(time_for_each_step)
-            moderator_instance.end_death_speech()
+        # moderator_instance.broadcast("Werewolves are decided")
+        moderator_instance.select_werewolves()
         
 
-        moderator_instance.start_town_people_disccusion()
+        while(len(moderator_instance.werewolves) != 0 and len(moderator_instance.werewolves) < len(moderator_instance.towns_people)): 
 
-        time.sleep(time_for_each_step)
+            moderator_instance.start()
+            moderator_instance.start_werewolves_disccusion()
 
-        moderator_instance.end_town_people_disccusion()
+            time.sleep(time_for_each_step)
 
-        moderator_instance.start_town_people_vote_session()
+            moderator_instance.end_werewolves_disccusion()
 
-        time.sleep(time_for_each_step)
+            moderator_instance.start_werewolves_vote_session()
 
-        moderator_instance.end_town_people_vote_session()
+            time.sleep(time_for_each_step)
 
-        if len(moderator_instance.werewolves) == 0 or len(moderator_instance.werewolves) >= len(moderator_instance.towns_people):
-            break
+            moderator_instance.end_werewolves_vote_session()
 
-        if (moderator_instance.didSomeOneDie) :
-            moderator_instance.start_death_speech()
-            time.sleep(15)
-            moderator_instance.end_death_speech()
-    
-    if (len(moderator_instance.werewolves) == 0) :
-        moderator_instance.broadcast("Towns people win")
-    else:
-        moderator_instance.broadcast("Werewolves win")
+            if len(moderator_instance.werewolves) == 0 or len(moderator_instance.werewolves) >= len(moderator_instance.towns_people):
+                break
+
+            if (moderator_instance.didSomeOneDie) :
+                moderator_instance.start_death_speech()
+                time.sleep(time_for_each_step)
+                moderator_instance.end_death_speech()
+            
+
+            moderator_instance.start_town_people_disccusion()
+
+            time.sleep(time_for_each_step)
+
+            moderator_instance.end_town_people_disccusion()
+
+            moderator_instance.start_town_people_vote_session()
+
+            time.sleep(time_for_each_step)
+
+            moderator_instance.end_town_people_vote_session()
+
+            if len(moderator_instance.werewolves) == 0 or len(moderator_instance.werewolves) >= len(moderator_instance.towns_people):
+                break
+
+            if (moderator_instance.didSomeOneDie) :
+                moderator_instance.start_death_speech()
+                time.sleep(15)
+                moderator_instance.end_death_speech()
+        
+        if (len(moderator_instance.werewolves) == 0) :
+            moderator_instance.broadcast("Towns people win")
+        else:
+            moderator_instance.broadcast("Werewolves win")
+
+    except KeyboardInterrupt:
+        print("Interrupt received! Closing server...")
+        ts.close()  # Properly close the server if supported
+        server_thread.join(timeout=1)  # Wait a bit for thread to finish
+        print("Server closed.")
