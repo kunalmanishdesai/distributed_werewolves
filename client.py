@@ -19,9 +19,9 @@ class Client_Receiver(rpyc.Service) :
 class Client_Sender():
 
     def __init__(self, moderatorHostName, moderatorPort, clientHost, clientPort): 
-        self.conn = rpyc.connect(moderatorHostName, moderatorPort)
+        self.conn = rpyc.connect(moderatorHostName, int(moderatorPort))
         self.host = clientHost
-        self.port = clientPort
+        self.port = int(clientPort)
 
         self.connection_id = f"{clientHost}:{clientPort}"
 
@@ -43,20 +43,32 @@ def input_loop(client):
         client.send_command(x)
     
 if __name__ == "__main__" :
+    
+     if len(sys.argv) < 5:
+
+        print("Usage: python3 client.py <Client IP> <Client Port> <Moderator IP> <Moderator Port>")
+
+        sys.exit(1)
 
     hostname = sys.argv[1]
     port  = sys.argv[2]
+    moderator_hostname = sys.argv[3]
+    moderator_port = int(sys.argv[4])
 
-    ts = ThreadedServer(Client_Receiver, hostname=hostname, port=port)
+    # Create a threaded server for this client
+    ts = ThreadedServer(Client_Receiver, hostname=client_hostname, port=client_port)
     server_thread = threading.Thread(target = ts.start)
     server_thread.start()
 
     # print("Client service started on hostname:", hostname," and port:", port)
 
-    moderatorHostName = "localhost"
-    moderatorPort = 18080
+    # moderatorHostName = "localhost"
+    # moderatorPort = 18080
 
-    client = Client_Sender(moderatorHostName, moderatorPort, hostname,port)
+    # Create a client sender to communicate with the moderator
+
+    client = Client_Sender(moderator_hostname, moderator_port, client_hostname, client_port)
+
 
     input_thread = threading.Thread(target=input_loop, args=(client,))
     input_thread.start()
