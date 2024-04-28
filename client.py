@@ -68,7 +68,7 @@ if __name__ == "__main__" :
 
     # Create a client sender to communicate with the moderator
 
-    client = Client_Sender(moderatorHostname, moderatorPort, hostname, port)
+    client = Client_Sender(moderatorHostName, moderatorPort, hostname, port)
 
 
     input_thread = threading.Thread(target=input_loop, args=(client,))
