@@ -44,10 +44,17 @@ def input_loop(client):
     
 if __name__ == "__main__" :
     
-    hostname = sys.argv[1]
-    port = int(sys.argv[2])  # Ensure the port is an integer
-    moderatorHostName = sys.argv[3]
-    moderatorPort = int(sys.argv[4])  # Ensure the port is an integer
+        if len(sys.argv) < 4:
+        print("Usage: python client.py <client_port> <moderator_IP> <moderator_port>")
+        sys.exit(1)
+
+    # Bind to all interfaces
+    hostname = '0.0.0.0'
+    port = int(sys.argv[1])  # Convert the first argument to integer for the port
+
+    # IP and port of the moderator (server)
+    moderatorHostName = sys.argv[2]
+    moderatorPort = int(sys.argv[3])
 
     # Create a threaded server for this client
     ts = ThreadedServer(Client_Receiver, hostname=hostname, port=port)
