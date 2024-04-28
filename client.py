@@ -44,7 +44,7 @@ def input_loop(client):
     
 if __name__ == "__main__" :
     
-        if len(sys.argv) < 4:
+    if len(sys.argv) < 4:
         print("Usage: python client.py <client_port> <moderator_IP> <moderator_port>")
         sys.exit(1)
 
