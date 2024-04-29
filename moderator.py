@@ -187,7 +187,7 @@ class Moderator(rpyc.Service) :
 
         most_voted_player = vote_counts.most_common()
 
-        if len(most_voted_player) > 1 and most_voted_player[0][1] == most_voted_player[1][1]:
+        if (len(most_voted_player) == 0) or len(most_voted_player) > 1 and most_voted_player[0][1] == most_voted_player[1][1]:
             self.broadcast("Vote was tied\n No one was killed.")
         else:
 
@@ -228,7 +228,7 @@ class Moderator(rpyc.Service) :
 
         most_voted_player = vote_counts.most_common()
 
-        if len(most_voted_player) > 1 and most_voted_player[0][1] == most_voted_player[1][1]:
+        if  (len(most_voted_player) == 0) or len(most_voted_player) > 1 and most_voted_player[0][1] == most_voted_player[1][1]:
             self.broadcast("Vote was tied\n No one was killed.")
         else:
 
