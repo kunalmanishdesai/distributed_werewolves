@@ -1,3 +1,22 @@
+#Author: Akhil Jose
+#Distributed Werewolves
+#Collaborators: Kunal Desai
+
+#Copyright (c) 2012 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, Kunal Desai 
+#This file is part of istributed Werewolves Game.
+
+#Distributed Werewolves is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+#Distributed Werewolves is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with Virtual werewolf.  If not, see <http://www.gnu.org/licenses/>.
+
 # Distributed Werewolves Game
 
 ## Contributors
