@@ -3,7 +3,7 @@
 #Updated by: Aksa Elizabeth Sunny
 #Collaborators: Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny
 
-#Copyright (c) 2012 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, Kunal Desai 
+#Copyright (c) 2024 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, Kunal Desai 
 #This file is part of Distributed Werewolves Game.
 
 #Distributed Werewolves is free software: you can redistribute it and/or modify

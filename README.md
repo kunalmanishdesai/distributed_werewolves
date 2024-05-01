@@ -2,7 +2,7 @@
 #Distributed Werewolves
 #Collaborators: Kunal Desai
 
-#Copyright (c) 2012 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, Kunal Desai 
+#Copyright (c) 2024 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, Kunal Desai 
 #This file is part of istributed Werewolves Game.
 
 #Distributed Werewolves is free software: you can redistribute it and/or modify
