@@ -65,10 +65,12 @@ sudo apt install python3-pip
 Ensure all terminals (for both moderator and clients) are running within the environment where the dependencies have been installed. If you encounter any issues, verify that the Python version and dependencies are correctly installed and up-to-date.
 
 ## Licensing
-This project is GPL licensed. We permit the use of this code in future academic courses unless stated otherwise here.
-# Copyright (c) 2012 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, and Kunal Desai
-# This project is licensed under the GNU General Public License (GPL), version 3 or later.
-# You may redistribute and/or modify it under the terms of the GPL as published by the Free Software Foundation.
+This project is licensed under the GNU General Public License (GPL), version 3 or later, allowing redistribution and modification under the terms specified by the Free Software Foundation. 
 
-# The project is distributed in the hope that it will be useful, but without any warranty, including the implied warranties of merchantability or fitness for a particular purpose.
-# For more information, see the full GPL at <http://www.gnu.org/licenses/>.
+The project is provided "as is," without any warranty, including implied warranties of merchantability or fitness for a particular purpose. For more details, see the full GPL at [GNU's website](http://www.gnu.org/licenses/).
+
+Additionally, the use of this code is permitted for future academic courses, unless otherwise stated here.
+
+Copyright (c) 2012 Ailun Pei, Akhil Jose, Aksa Elizabeth Sunny, and Kunal Desai
+
+
