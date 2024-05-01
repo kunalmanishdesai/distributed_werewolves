@@ -63,33 +63,20 @@ def input_loop(client):
         client.send_command(x)
     
 if __name__ == "__main__" :
-    
-    if len(sys.argv) < 4:
-        print("Usage: python client.py <client_port> <moderator_IP> <moderator_port>")
-        sys.exit(1)
 
-    # Bind to all interfaces
-    hostname = '0.0.0.0'
-    port = int(sys.argv[1])  # Convert the first argument to integer for the port
+    hostname = sys.argv[1]
+    port  = sys.argv[2]
 
-    # IP and port of the moderator (server)
-    moderatorHostName = sys.argv[2]
-    moderatorPort = int(sys.argv[3])
-
-    # Create a threaded server for this client
     ts = ThreadedServer(Client_Receiver, hostname=hostname, port=port)
     server_thread = threading.Thread(target = ts.start)
     server_thread.start()
 
     # print("Client service started on hostname:", hostname," and port:", port)
 
-    # moderatorHostName = "localhost"
-    # moderatorPort = 18080
+    moderatorHostName = "localhost"
+    moderatorPort = 18080
 
-    # Create a client sender to communicate with the moderator
-
-    client = Client_Sender(moderatorHostName, moderatorPort, hostname, port)
-
+    client = Client_Sender(moderatorHostName, moderatorPort, hostname,port)
 
     input_thread = threading.Thread(target=input_loop, args=(client,))
     input_thread.start()
